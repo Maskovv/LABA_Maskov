@@ -9,7 +9,7 @@ const MainPage = () => {
   const params = useParams();
 
   const texts = useMemo(
-    () => ["hello world", "привет мир", "здравствуй, реальность"],
+    () => ["Непонимая языка", "Женщин", "Критических ошибок"],
     []
   );
 
@@ -23,12 +23,44 @@ const MainPage = () => {
     });
   }, [texts]);
 
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitted, setSubmitted] = useState(null);
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setSubmitted({ login, password });
+    },
+    [login, password]
+  );
+
   return (
     <>
       <div className="main">
         <div className="main__container">
           <HelloCard text={textHello} onNext={handleNext} />
-          <InstructionCard />
+          <form className="login-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Логин"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Отправить</button>
+          </form>
+          {submitted && (
+            <div className="submitted">
+              <div>Логин: {submitted.login}</div>
+              <div>Пароль: {submitted.password}</div>
+            </div>
+          )}
         </div>
       </div>
     </>

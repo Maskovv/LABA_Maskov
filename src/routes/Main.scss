@@ -43,3 +43,37 @@
   &:active { transform: translateY(1px); }
   &:hover  { background: $secondary; }
 }
+
+.login-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  input {
+    width: 100%;
+    max-width: 320px;
+    padding: 10px 12px;
+    border: 1px solid $border;
+    border-radius: 8px;
+    background: $primary;
+    color: $text-black;
+  }
+
+  button {
+    margin-top: 8px;
+    align-self: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid $dark;
+    background: $secondary;
+    cursor: pointer;
+  }
+}
+
+.submitted {
+  margin-top: 12px;
+  text-align: center;
+  color: $text-black;
+}
